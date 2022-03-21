@@ -8,11 +8,21 @@ using UnityEngine.SceneManagement;
 public class BallScripts : MonoBehaviour
 {
     public int coin;
+    public int record;
     public GameObject panel;
     public GameObject egg;
+    public GameObject NewRecord;
+   
     [SerializeField] Text coinText;
+    [SerializeField] Text recordText;
     [SerializeField] GameObject Ball;
     bool direction = false;
+    
+    void Start()
+    {
+        record = PlayerPrefs.GetInt("Record");
+        recordText.text = record.ToString();
+    }
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.tag == "Bonus")
@@ -23,6 +33,13 @@ public class BallScripts : MonoBehaviour
         }
         if (other.gameObject.tag == "Enemy")
         {
+            if (record < coin)
+            {
+                PlayerPrefs.SetInt("Record", coin);
+                NewRecord.SetActive(true);
+               
+            }
+
             coin = PlayerPrefs.GetInt("Coins") + coin;
             PlayerPrefs.SetInt("Coins", coin);
             Destroy(other.gameObject);

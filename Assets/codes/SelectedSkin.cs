@@ -20,12 +20,9 @@ public class SelectedSkin : MonoBehaviour
     public GameObject ChText;
     private string statusStr;
     private int check;
-    public Text descriptionTextName;
-    public Text descriptionTextAge;
-    public Text descriptionTextBio;
-    public GameObject Opisanie;
-    public GameObject OpisanieButton;
-    public GameObject OpisanieButtonZakrit;
+    public Text nameT;
+    private string name;
+    
     [System.Serializable]
     public class Data
     {
@@ -36,7 +33,6 @@ public class SelectedSkin : MonoBehaviour
     }
     void Start()
     {
-
         LeftAr.SetActive(true);
         coins = PlayerPrefs.GetInt("Coins");
         if (PlayerPrefs.HasKey("SaveGame"))
@@ -79,22 +75,11 @@ public class SelectedSkin : MonoBehaviour
             LeftAr.SetActive(false);
             RightAr.SetActive(true);
         }
-        Inf();
+
+        nameT.text = AllCharacters[i].GetComponent<Item>().name;
+     
     }
-    public void Inf()
-    {
-        switch (i)
-        {
-            case 0: descriptionTextName.text = "Имя: Юра "; descriptionTextAge.text = "Возраст: 9 лет"; descriptionTextBio.text = " Биография: Юра был обычным мальчиком в семье профессора яйичных наук. Но однажды его жизнь разделилась на до и после. В ходе эксперемента отец превратил его в яйцо."; break;
-            case 1: descriptionTextName.text = "Имя: Тест "; descriptionTextAge.text = "Возраст: 0 лет"; descriptionTextBio.text = " Биография: Был нарисован мной в пейнт 3Д для теста скинов"; break;
-            case 2: descriptionTextName.text = "Имя: Влада "; descriptionTextAge.text = "Возраст: 12 лет"; descriptionTextBio.text = " Биография: Одныжды написала Максиму, теперь BIG NIGGERS. Иногда даже жаль ее, но лучше крыша над головой."; break;
-            case 3: descriptionTextName.text = "Имя: Kaneki Egg "; descriptionTextAge.text = "Возраст: 20 лет"; descriptionTextBio.text = " Пошел на свидание с девушкой, но у нее был на него другой план. Но ему повезло, и ему пересадили органы гуля. Любит фотографировать закат. 1000-7?"; break;
-            case 5: descriptionTextName.text = "Имя: Чарли Чаплин "; descriptionTextAge.text = "Возраст: 88 лет"; descriptionTextBio.text = " Биография: Известниьших актер немого кино. Играл роль Немецкого диктатора времен 2-ой мировой.Впервые выступил на сцене, всего в 5 лет."; break;
-            case 4: descriptionTextName.text = "Имя:  Рома"; descriptionTextAge.text = "Возраст: 14 лет"; descriptionTextBio.text = " Биография: Резко понял что он не такой как все. Не любит аниме. Бережет Мизинчик. Умножает монетки на десять"; break;
-            case 6: descriptionTextName.text = "Имя:  Хаг и Ваг"; descriptionTextAge.text = "Возраст: 11 и 7 лет"; descriptionTextBio.text = " Биография: Два брата одели костюм какого-то монстра. Их мама любит оранжевый цвет."; break;
-            case 7: descriptionTextName.text = "Имя:  Мишка Фредди"; descriptionTextAge.text = "Возраст: 7 лет"; descriptionTextBio.text = " Биография: 1 игра вышла в 2014 году. Любит пугать охрану."; break;
-        }
-    }
+    
     public IEnumerator CheckHaveCharacter()
     {
         while (statusStr != "Check")
@@ -167,7 +152,7 @@ public class SelectedSkin : MonoBehaviour
                 RightAr.SetActive(false);
             }
         }
-        Inf();
+        nameT.text = AllCharacters[i].GetComponent<Item>().name;
     }
     public void ArrowLeft()
     {
@@ -194,7 +179,7 @@ public class SelectedSkin : MonoBehaviour
                 LeftAr.SetActive(false);
             }
         }
-        Inf();
+        nameT.text = AllCharacters[i].GetComponent<Item>().name;
     }
     public void SelectCh()
     {
@@ -232,13 +217,11 @@ public class SelectedSkin : MonoBehaviour
     }
     public void OpisanieOtcrit()
     {
-        Opisanie.SetActive(true);
-        OpisanieButton.SetActive(false);
+        
 
     }
     public void OpisanieZakrit()
     {
-        Opisanie.SetActive(false);
-        OpisanieButton.SetActive(true);
+       
     }
 }

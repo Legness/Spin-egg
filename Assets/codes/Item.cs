@@ -4,15 +4,8 @@ using UnityEngine;
 
 public class Item : MonoBehaviour
 {
-    public int price;
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
+   [SerializeField] new  public string name;
+    [SerializeField] public int price;
+    
+   
 }
